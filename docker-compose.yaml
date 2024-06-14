@@ -1,13 +1,12 @@
 services:
-  filebrowser:
+  filebrowser.app:
     container_name: filebrowser
     image: 'filebrowser/filebrowser:${FILEBROWSER_TAG:-latest}'
     restart: always
     ports:
       - ${FILEBROWSER_PORT:-88}:80/tcp
     volumes:
-      - ${FILEBROWSER_SRV_PATH}:/srv
-      - ${FILEBROWSER_DB_FILE:-}:/database.db
-      - ${FILEBROWSER_CONFIG_FILE-}:/filebrowser.json
-
+      - ${FILEBROWSER_SRV_PATH:-./data}:/srv
+      - ${FILEBROWSER_DB_FILE:-./config/database.db}:/database.db
+      - ${FILEBROWSER_CONFIG_FILE-./config/settings.json}:/filebrowser.json
 
